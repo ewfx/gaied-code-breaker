@@ -1,0 +1,16 @@
+1. Create Modelfile
+nano Modelfile
+2. Copy paste Modelfile content
+3. Ctrl+x, Y, enter to save the file
+4. cat Modelfile to see the content
+5. Enter below command to create the customised model
+ollama create mistral-email-classifier -f Modelfile
+6. Enter below command to run the customised model
+ollama run mistral-email-classifier
+
+
+Rollback or Update
+1. Enter below command to remove the customised model
+ollama rm mistral-email-classifier
+2. Enter below command to remove the Modelfile
+rm -f Modelfile
