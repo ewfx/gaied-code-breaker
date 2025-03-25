@@ -12,6 +12,7 @@ import org.apache.tika.metadata.Metadata;
 import org.apache.tika.parser.AutoDetectParser;
 import org.apache.tika.parser.ParseContext;
 import org.apache.tika.sax.BodyContentHandler;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.xml.sax.SAXException;
 
@@ -29,10 +30,11 @@ import java.util.stream.Collectors;
 public class EmailReaderService {
 
     private static final Tika tika = new Tika();
+    @Value("${gaied_input_folder_path}")
+    private String folderPath;
+
 
     public List<EmailRequest> getEmailRequests() {
-        String folderPath = "D:\\loan_emails_detailed"; // Change this to your folder path
-
         try {
             return Files.list(Paths.get(folderPath))
                     .filter(path -> path.toString().endsWith(".eml"))
@@ -55,12 +57,6 @@ public class EmailReaderService {
             String body = extractBody(message);
             String attachmentText = extractAttachments(message);
 
-            // Print results
-            //System.out.println("File: " + filePath.getFileName());
-            //System.out.println("Subject: " + subject);
-            //System.out.println("Body: " + body);
-            //System.out.println("Attachment Text: " + attachmentText);
-            //System.out.println("--------------------------------------------------");
             emailRequest  = EmailRequest.builder().emailName(filePath.getFileName().toString())
                     .emailSubject(subject)
                     .emailBody(body)

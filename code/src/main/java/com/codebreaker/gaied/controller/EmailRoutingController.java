@@ -29,10 +29,8 @@ public class EmailRoutingController {
         return ResponseEntity.ok(service.queryMistral(prompt));
     }
 
-    @GetMapping(value = "/init", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/init")
     public ResponseEntity<List<EmailResponse>> init() throws Exception {
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        return new ResponseEntity<>(service.getEmailRoute(),headers, HttpStatus.OK);
+        return new ResponseEntity<>(service.getEmailRoute(), HttpStatus.OK);
     }
 }

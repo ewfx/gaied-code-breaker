@@ -5,7 +5,9 @@ import com.codebreaker.gaied.entity.EmailResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -18,6 +20,7 @@ import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
 
 @Service
+@Slf4j
 public class EmailRoutingService {
     private static final ExecutorService executor = Executors.newFixedThreadPool(5);
     @Autowired
@@ -25,15 +28,15 @@ public class EmailRoutingService {
     private final WebClient webClient;
     private final ObjectMapper objectMapper = new ObjectMapper();
 
-    public EmailRoutingService(WebClient.Builder webClientBuilder) {
-        this.webClient = webClientBuilder.baseUrl("http://34.47.176.130:11434").build();
+    public EmailRoutingService(WebClient.Builder webClientBuilder,@Value("${llm_application_base_url}") String llmUrl) {
+        this.webClient = webClientBuilder.baseUrl(llmUrl).build();
     }
 
     public List<EmailResponse> queryMistralEmailRoute(EmailRequest emailRequest) throws JsonProcessingException {
         // Create prompt for Mistral
         String prompt = "You are a Loan Department email classifier. Classify the following emails into request type, sub-type, reasoning behind the extraction, confidence score of your extraction in percentage and if any key properties that can be extracted as key value pair. Return ONLY valid JSON with NO extra text. Do NOT include explanations or comments.###Email Name : ### "+emailRequest.getEmailName()+",### Email Body: ### "+emailRequest.getEmailBody()+" ### Email Subject : ### "+emailRequest.getEmailSubject()+" ### Email Attachment Text : ### "+emailRequest.getAttachmentText()+" JSON Output Format: [{emailName: Please keep the email name here, requestType: Please keep the request type here, requestSubType: please keep the sub request type here, reasoning: Please keep the reasoning behind the extraction, confidenceScore: Please keep the confidence score of your extraction in percentage, keyProperties: Please keep the key properties here as a key value pair}] Output strictly in valid Array JSON format as shown above.";
         prompt = prompt.replace("\r", "").replace("\n", " ");
-        System.out.println(prompt);
+        log.info(prompt);
         // Call Ollama API
         String response = webClient.post()
                 .uri("/api/generate")
@@ -45,7 +48,7 @@ public class EmailRoutingService {
 
         // Parse response JSON
         String formattedResponse = formatResponse(response);
-        System.out.println("Anil AI Reponse --> "+formattedResponse);
+        log.info("AI Response --> "+formattedResponse);
         JsonNode responseNode = objectMapper.readTree(response);
         String jsonResponse = responseNode.get("response").asText();
 
@@ -55,8 +58,6 @@ public class EmailRoutingService {
     }
 
     public List<EmailResponse> classifyEmails(List<EmailRequest> emails) throws Exception {
-        // Convert emails to JSON
-        emails = emails.subList(0,10);
         List<CompletableFuture<List<EmailResponse>>> futures = emails.stream().map(emailRequest -> CompletableFuture.supplyAsync(() -> {
                     try {
                         return queryMistralEmailRoute(emailRequest);
@@ -73,7 +74,7 @@ public class EmailRoutingService {
                         .collect(Collectors.toList())) // Convert to List
                 .get(); // Blocking call to ensure results are available
         // Print the final combined list
-        System.out.println("Final Results: " + results);
+        log.info("Final Results: " + results);
         return results;
     }
 
@@ -81,7 +82,7 @@ public class EmailRoutingService {
         List<EmailRequest> emailRequestList = prepare();
         List<EmailResponse> emailResponseList = classifyEmails(emailRequestList);
         emailResponseList.forEach(emailResponse -> {
-            System.out.println(emailResponse);
+            log.info("Email Response: "+emailResponse);
         });
         return emailResponseList;
     }
