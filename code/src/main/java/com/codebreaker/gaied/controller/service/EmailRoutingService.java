@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 @Service
 @Slf4j
 public class EmailRoutingService {
-    private static final ExecutorService executor = Executors.newFixedThreadPool(5);
+    private static final ExecutorService executor = Executors.newFixedThreadPool(20);
     @Autowired
     EmailReaderService emailReaderService;
     private final WebClient webClient;
@@ -34,14 +34,14 @@ public class EmailRoutingService {
 
     public List<EmailResponse> queryMistralEmailRoute(EmailRequest emailRequest) throws JsonProcessingException {
         // Create prompt for Mistral
-        String prompt = "You are a Loan Department email classifier. Classify the following emails into request type, sub-type, reasoning behind the extraction, confidence score of your extraction in percentage and if any key properties that can be extracted as key value pair. Return ONLY valid JSON with NO extra text. Do NOT include explanations or comments.###Email Name : ### "+emailRequest.getEmailName()+",### Email Body: ### "+emailRequest.getEmailBody()+" ### Email Subject : ### "+emailRequest.getEmailSubject()+" ### Email Attachment Text : ### "+emailRequest.getAttachmentText()+" JSON Output Format: [{emailName: Please keep the email name here, requestType: Please keep the request type here, requestSubType: please keep the sub request type here, reasoning: Please keep the reasoning behind the extraction, confidenceScore: Please keep the confidence score of your extraction in percentage, keyProperties: Please keep the key properties here as a key value pair}] Output strictly in valid Array JSON format as shown above.";
+        String prompt = "You are a Loan Department email classifier. Classify the following emails. ###Email Name : ### "+emailRequest.getEmailName()+",### Email Body: ### "+emailRequest.getEmailBody()+" ### Email Subject : ### "+emailRequest.getEmailSubject()+" ### Email Attachment Text : ### "+emailRequest.getAttachmentText();
         prompt = prompt.replace("\r", "").replace("\n", " ");
         log.info(prompt);
         // Call Ollama API
         String response = webClient.post()
                 .uri("/api/generate")
                 .header("Content-Type", "application/json")
-                .bodyValue("{\"model\":\"mistral\", \"prompt\":\"" + prompt + "\"}")
+                .bodyValue("{\"model\":\"mistral-email-classifier\", \"prompt\":\"" + prompt + "\"}")
                 .retrieve()
                 .bodyToMono(String.class)
                 .block(); // Blocking call to get the full response
@@ -95,7 +95,7 @@ public class EmailRoutingService {
         String rawResponse = webClient.post()
                 .uri("/api/generate")
                 .header("Content-Type", "application/json")
-                .bodyValue("{\"model\":\"mistral\", \"prompt\":\"" + prompt + "\"}")
+                .bodyValue("{\"model\":\"mistral-email-classifier\", \"prompt\":\"" + prompt + "\"}")
                 .retrieve()
                 .bodyToMono(String.class)
                 .block(); // Blocking call to get the full response

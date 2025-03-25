@@ -1,9 +1,7 @@
-# 🚀 Project Name
+# 🚀 GAIED, Email classifier/routing from codebreaker team.
 
 ## 📌 Table of Contents
 - [Introduction](#introduction)
-- [Demo](#demo)
-- [Inspiration](#inspiration)
 - [What It Does](#what-it-does)
 - [How We Built It](#how-we-built-it)
 - [Challenges We Faced](#challenges-we-faced)
@@ -14,47 +12,28 @@
 ---
 
 ## 🎯 Introduction
-A brief overview of your project and its purpose. Mention which problem statement are your attempting to solve. Keep it concise and engaging.
+The application will run the .eml file from a configurable folder structure and extract the email content along with the attachment then pass the content to the pre-trained LLM model (customise pre-trained mistral model runs on ollama server deployed in local or in any VM instance) with a proper prompt to get the required response and then parsing the response to java object and returning the same as json
 
-## 🎥 Demo
-🔗 [Live Demo](#) (if applicable)  
-📹 [Video Demo](#) (if applicable)  
-🖼️ Screenshots:
-
-![Screenshot 1](link-to-image)
-
-## 💡 Inspiration
-What inspired you to create this project? Describe the problem you're solving.
 
 ## ⚙️ What It Does
-Explain the key features and functionalities of your project.
+Email classification by using a pre-trained LLM model to get the desired response
 
 ## 🛠️ How We Built It
-Briefly outline the technologies, frameworks, and tools used in development.
+LLM used is mistral LLM through ollama framework, so that locally we can deploy, we can use intranet, internet is not required, completely free. customisable, have our own model created and used by keeping based model as mistral, based on the server capacity we can easily switch to larger model LLM3, Gemini, deepseek R1 as ollama has all the integration and we can interact with ollama.
 
 ## 🚧 Challenges We Faced
-Describe the major technical or non-technical challenges your team encountered.
+Major challenge is finding out a model which supports fine tune with open source capacity.
 
 ## 🏃 How to Run
 1. Clone the repository  
-   ```sh
-   git clone https://github.com/your-repo.git
-   ```
-2. Install dependencies  
-   ```sh
-   npm install  # or pip install -r requirements.txt (for Python)
-   ```
-3. Run the project  
-   ```sh
-   npm start  # or python app.py
+2. We have placed our code inside the code folder which is a springboot application.
+3. We can run the code and place the .eml file inside D:\loan_emails_detailed
+4. We can hit the GET URL http://localhost:8080/emailroute/init
    ```
 
 ## 🏗️ Tech Stack
-- 🔹 Frontend: React / Vue / Angular
-- 🔹 Backend: Node.js / FastAPI / Django
-- 🔹 Database: PostgreSQL / Firebase
-- 🔹 Other: OpenAI API / Twilio / Stripe
+- 🔹 Backend: Springboot for email classification, Python to train the model.
+- 🔹 Other: Mistral LLM using ollama framework
 
 ## 👥 Team
-- **Your Name** - [GitHub](#) | [LinkedIn](#)
-- **Teammate 2** - [GitHub](#) | [LinkedIn](#)
+Nithya, Uttakarsh, Anil

@@ -2,6 +2,7 @@ package com.codebreaker.gaied.entity;
 
 import lombok.*;
 
+import java.util.List;
 import java.util.Map;
 
 @Getter
@@ -13,9 +14,9 @@ import java.util.Map;
 @Data
 public class EmailResponse {
     private String emailName;
-    private String requestType;
-    private String requestSubType;
+    private List<Classification> classifications;
     private String reasoning;
+    private String duplicateInfo;
     private String confidenceScore;
     private Map<String,String> keyProperties;
 }

@@ -1,0 +1,236 @@
+[
+    {
+        "emailName": "loan_email_090.eml",
+        "classifications": [
+            {
+                "requestType": "Loan Inquiry",
+                "requestSubType": [
+                    "New Loan Request"
+                ]
+            }
+        ],
+        "reasoning": "The email subject 'Loan Agreement - Ref #090' indicates a loan-related inquiry. The body of the email mentions that the loan request has been processed successfully and provides details like loan amount, interest rate, tenure, and EMI, which are characteristic of a new loan request. However, since there is no explicit mention of 'New Loan Request', we infer it from the provided information.",
+        "duplicateInfo": "",
+        "confidenceScore": "95%",
+        "keyProperties": {
+            "dealName": "Loan Agreement - Ref #090",
+            "amount": "INR 339565",
+            "interestRate": "9.71%",
+            "tenure": "20 months",
+            "emi": "INR 21541/month"
+        }
+    },
+    {
+        "emailName": "loan_email_091.eml",
+        "classifications": [
+            {
+                "requestType": "Loan Inquiry",
+                "requestSubType": [
+                    "New Loan Request"
+                ]
+            }
+        ],
+        "reasoning": "The email subject clearly mentions 'Loan Agreement' which falls under the category of 'Loan Inquiry'. The loan agreement document attached to the email confirms that it is a response to a new loan request.",
+        "duplicateInfo": "",
+        "confidenceScore": "95%",
+        "keyProperties": {
+            "dealName": "loan_091",
+            "amount": "418716",
+            "interestRate": "9.20%",
+            "tenure": "38 months",
+            "emi": "17470",
+            "expirationDate": null
+        }
+    },
+    {
+        "emailName": "loan_email_092.eml",
+        "classifications": [
+            {
+                "requestType": "Loan Inquiry",
+                "requestSubType": [
+                    "New Loan Request"
+                ]
+            }
+        ],
+        "reasoning": "Email body and subject indicate a loan agreement and ref #092, which is consistent with a new loan request.",
+        "duplicateInfo": "None found as it's a new email and not a reply or forward within an email thread. Also, processed status suggests this isn't a duplicate.",
+        "confidenceScore": "95%",
+        "keyProperties": {
+            "dealName": "Loan Ref #092",
+            "amount": "INR 524312",
+            "interestRate": "11.50%",
+            "tenure": "20 months",
+            "emiAmount": "INR 16194",
+            "expirationDate": "Not provided in the email"
+        }
+    },
+    {
+        "emailName": "loan_email_093.eml",
+        "classifications": [
+            {
+                "requestType": "Loan Inquiry",
+                "requestSubType": [
+                    "Loan Approval Status",
+                    "Account Update"
+                ]
+            }
+        ],
+        "reasoning": "The email body mentions 'Your loan request (Ref #093)' which indicates a Loan Inquiry, specifically for the approval status as it also contains 'We are pleased to inform you that your loan request (Ref #093) has been processed successfully.' The attachment text mentions 'Loan Agreement - Ref #093' and the email subject also confirms this, suggesting an Account Update due to the change in the account status.",
+        "duplicateInfo": "",
+        "confidenceScore": "95%",
+        "keyProperties": {
+            "dealName": "#093",
+            "amount": "INR 832851",
+            "interestRate": "9.29%",
+            "tenure": "47 months",
+            "emi": "INR 3544/month"
+        }
+    },
+    {
+        "emailName": "loan_email_094.eml",
+        "classifications": [
+            {
+                "requestType": "Loan Inquiry",
+                "requestSubType": [
+                    "New Loan Request"
+                ]
+            }
+        ],
+        "reasoning": "The email subject 'Loan Agreement - Ref #094' and the content of the email body suggests that it is a response to a previous loan request (Ref #094), therefore, it belongs to the 'Loan Inquiry' category and more specifically, 'New Loan Request'.",
+        "duplicateInfo": "",
+        "confidenceScore": "95%",
+        "keyProperties": {
+            "dealName": "loan_094",
+            "amount": "INR 316811",
+            "interestRate": "11.57%",
+            "tenure": "46 months",
+            "emi": "INR 19381/month"
+        }
+    },
+    {
+        "emailName": "loan_email_095.eml",
+        "classifications": [
+            {
+                "requestType": "Loan Inquiry",
+                "requestSubType": [
+                    "Loan Approval Status"
+                ]
+            }
+        ],
+        "reasoning": "Email subject suggests a loan-related matter and the body mentions approval of loan request (Ref #095). The attached document text further confirms the loan details.",
+        "duplicateInfo": "",
+        "confidenceScore": "95%",
+        "keyProperties": {
+            "dealName": "Loan Ref #095",
+            "amount": "INR 937773",
+            "interestRate": "9.72%",
+            "tenure": "28 months",
+            "emi": "INR 8935/month"
+        }
+    },
+    {
+        "emailName": "loan_email_096.eml",
+        "classifications": [
+            {
+                "requestType": "Loan Processing Issue",
+                "requestSubType": [
+                    "Loan Approval Status"
+                ]
+            }
+        ],
+        "reasoning": "The email subject suggests that a loan agreement is being sent, but the email body and attachment text provide specific details about the loan amount, interest rate, tenure, EMI, and reference number which are usually discussed during loan approval stage.",
+        "duplicateInfo": "",
+        "confidenceScore": "95%",
+        "keyProperties": {
+            "dealName": "Loan Ref #096",
+            "amount": "INR 473114",
+            "interestRate": "11.15%",
+            "tenure": "40 months",
+            "emi": "INR 28747/month"
+        }
+    },
+    {
+        "emailName": "loan_email_097.eml",
+        "classifications": [
+            {
+                "requestType": "Loan Inquiry",
+                "requestSubType": [
+                    "Loan Approval"
+                ]
+            }
+        ],
+        "reasoning": "Email subject and attachment text indicate that the loan has been approved, hence it falls under Loan Inquiry category with subtype as Loan Approval.",
+        "duplicateInfo": "",
+        "confidenceScore": "98%",
+        "keyProperties": {
+            "dealName": "loan_097",
+            "amount": "852395",
+            "interestRate": "12.34%",
+            "tenure": "45 months",
+            "emi": "24672/month"
+        }
+    },
+    {
+        "emailName": "loan_email_098.eml",
+        "classifications": [
+            {
+                "requestType": "Loan Inquiry",
+                "requestSubType": [
+                    "Loan Approval"
+                ]
+            }
+        ],
+        "reasoning": "Email subject indicates a loan agreement, and the email body mentions that the loan request has been processed successfully. The attachment text also confirms the loan reference number.",
+        "duplicateInfo": "",
+        "confidenceScore": "95%",
+        "keyProperties": {
+            "dealName": "Loan_098",
+            "amount": "INR 912820",
+            "interestRate": "7.90%",
+            "tenure": "32 months",
+            "emi": "INR 23277/month"
+        }
+    },
+    {
+        "emailName": "loan_email_099.eml",
+        "classifications": [
+            {
+                "requestType": "Loan Inquiry",
+                "requestSubType": [
+                    "New Loan Request"
+                ]
+            }
+        ],
+        "reasoning": "The email subject and the body text suggest that the email is related to a loan. The context of the body suggests that the loan has been processed successfully, indicating it is a response to an earlier request for a new loan.",
+        "duplicateInfo": "No duplicate information found.",
+        "confidenceScore": "98%",
+        "keyProperties": {
+            "dealName": "Ref #099",
+            "amount": "INR 186923",
+            "interestRate": "11.65%",
+            "tenure": "24 months",
+            "emiAmount": "INR 8569/month"
+        }
+    },
+    {
+        "emailName": "loan_email_100.eml",
+        "classifications": [
+            {
+                "requestType": "Loan Processing Issue",
+                "requestSubType": [
+                    "Loan Agreement Request"
+                ]
+            }
+        ],
+        "reasoning": "The email body and subject indicate that the loan agreement has been processed successfully for a specific reference number (Ref #100). The attachment text further confirms this by mentioning the same reference number.",
+        "duplicateInfo": "",
+        "confidenceScore": "95%",
+        "keyProperties": {
+            "dealName": "Loan_100",
+            "amount": "470649",
+            "interestRate": "10.90%",
+            "tenure": "42 months",
+            "emi": "13700/month"
+        }
+    }
+]
